@@ -1,0 +1,81 @@
+//Name: Rajath
+//Date : 16-01-24
+//Program : Represent a polynomial using 1-D array and perform addition operation on two polynomials
+//regnoi : 230970091
+#include<iostream>
+using namespace std;
+struct poly{
+        int coeff;
+        int exp;
+
+};
+
+int main(){
+        int p1,p2,coeff,exp;
+        //struct poly pol1[p1];
+        //struct poly pol2[p2]
+        cout<<"Enter number of elements for first polynomial exoprn \n";
+        cin>>p1;
+        struct poly pol1[p1];
+        pol1[0].coeff=p1;
+        pol1[0].exp=0;
+        for(int i=1;i<=p1;i++){
+                cout<<"Enter coeffieicent for "<<i<<"elemnt \n";
+                cin>>coeff;
+                cout<<"Enter expression value \n";
+                cin>>exp;
+                pol1[i].coeff=coeff;
+                pol1[i].exp=exp;
+
+        }
+        cout<<"Table for first polynomial expression is \n";
+        cout<<"Polynom Index \t Coeffeicient \t Expresssion \n";
+        for(int i=0;i<=p1;i++){
+                cout<<"P1["<<i<<"]"<<"\t\t"<<pol1[i].coeff<<"\t\t"<<pol1[i].exp<<"\n";
+
+        }
+
+
+
+
+        cout<<"\n Enter number of elements for second polynomial exoprn \n";
+cin>>p2;
+        struct poly pol2[p2];
+        pol2[0].coeff=p2;
+        pol2[0].exp=0;
+        for(int i=1;i<=p2;i++){
+                cout<<"Enter coeffieicent for "<<i<<"elemnt \n";
+                cin>>coeff;
+                cout<<"Enter expression value \n";
+                cin>>exp;
+                pol2[i].coeff=coeff;
+                pol2[i].exp=exp;
+
+        }
+        cout<<"Table for second polynomial expression is \n";
+        cout<<"Polynom Index \t Coeffeicient \t Expresssion \n";
+        for(int i=0;i<=p2;i++){
+                cout<<"P2["<<i<<"]"<<"\t\t"<<pol2[i].coeff<<"\t\t"<<pol2[i].exp<<"\n";
+
+        }
+        int count=0;
+        struct poly pol3[5];//statically mapped change it
+        pol3[0].coeff=5; //staticaly mapped
+        pol3[0].exp=0;//same
+        int test=1;
+        cout<<"Now performing the addition of these two matrices \n";
+        for(int i=i;i<=p1;i++){
+                for(int j=1;j<=p2;j++){
+                        if(pol1[i].exp==pol2[j].exp){
+                                int sum=pol1[i].coeff+pol2[j].coeff;
+                                pol3[test].coeff=sum;
+                                pol3[test].exp=pol1[i].exp;
+                                test=test+1;
+
+
+                        }
+
+                }
+
+        }
+}

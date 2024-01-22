@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int m, n;
+    cout << "Enter number of rows: ";
+    cin >> m;
+    cout << "Enter number of columns: ";
+    cin >> n;
+
+    int matrix[50][50];
+
+    cout << "Enter " << m << "x" << n << " matrix elements:\n";
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> matrix[i][j];
+        }
+    }
+
+    int rowMajor[m * n];
+    int colMajor[m * n];
+
+    // Convert to 1D array in row-major order
+    int k = 0;
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            rowMajor[k++] = matrix[i][j];
+        }
+    }
+
+    // Convert to 1D array in column-major order
+    k = 0;
+    for (int j = 0; j < n; j++) {
+        for (int i = 0; i < m; i++) {
+            colMajor[k++] = matrix[i][j];
+        }
+    }
+
+    // Display row-major array
+    cout << "Row-major array:\n";
+    for (int i = 0; i < m * n; i++) {
+        cout << rowMajor[i] << " ";
+    }
+    cout << "\n";
+
+    // Display column-major array
+    cout << "Column-major array:\n";
+    for (int i = 0; i < m * n; i++) {
+        cout << colMajor[i] << " ";
+    }
+    cout << "\n";
+
+    int q, p;
+    cout << "Enter row and column for checking index value of an element in row major and column major: ";
+    cin >> q >> p;
+
+    int offset_row_major = q * n + p;
+    int offset_col_major = p * m + q;
+
+    cout << "Offset value in row-major order: " << offset_row_major << "\n";
+    cout << "Offset value in column-major order: " << offset_col_major << "\n";
+
+    return 0;
+}

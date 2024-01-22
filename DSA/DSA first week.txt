@@ -1,0 +1,304 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int m,n,a[10][10],i,j,size,count=0,b[10],i1,i2,rowele,colele;
+	cout<<"enter the dimension :";
+	cin>>m>>n;
+	cout<<"enter the elements:";
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			cin>>a[i][j];
+			
+		}
+	}
+	cout<<"the elements are:";
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			cout<<a[i][j]<<" ";
+			
+		}cout<<endl;
+	}
+	size=m*n;
+	cout<<"the row major 1d array is:"<<endl;
+	for(i=0;i<m;i++)
+	
+		for(j=0;j<n;j++)
+	
+	
+	b[count++]=a[i][j];	
+	for(i=0;i<size;i++)
+	cout<<b[i];
+	cout<<"enter the offset  :";
+	cin>>i1>>i2;
+	rowele=(i1*m)+i2;
+	cout<<"position is:"<<rowele<<endl;
+	cout<<"the element is:";
+	cout<<b[rowele];
+	
+
+count=0;
+	cout<<"the column major 1d array is";
+	for(j=0;j<n;j++)
+	for(i=0;i<m;i++)
+	
+		b[count++]=a[i][j];
+		for(i=0;i<size;i++)
+	
+	cout<<b[i];
+	cout<<"enter the offset :";
+	cin>>i1>>i2;
+	colele=(i2*n)+i1;
+	cout<<"position is:"<<colele<<endl;
+	cout<<"the element is:";
+	cout<<b[colele];
+	
+	
+
+	return 0;
+}
+
+
+
+
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int m,n,a[10][10],i,j,size,rowele,i1,i2,count=0,b[10];
+	cout<<"enter the dimension :";
+	cin>>m>>n;
+	cout<<"enter the elements:";
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			if(i==j)
+			cin>>a[i][j];
+			else
+			a[i][j]=0;
+			
+		}
+	}
+	cout<<"the elements are:";
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			cout<<a[i][j]<<" ";
+			
+		}cout<<endl;
+	}
+	size=m;
+	cout<<"the row major 1d array is:"<<endl;
+	for(i=0;i<m;i++)
+	{
+	
+	
+		for(j=0;j<n;j++)
+		{
+		
+		if(i==j)
+		{
+		
+	b[count++]=a[i][j];
+}
+}
+}
+		
+	for(i=0;i<size;i++)
+	cout<<b[i];
+	cout<<"enter the offset  :";
+	cin>>i1>>i2;
+	rowele=(i1*m)+i2;
+	cout<<"position is:"<<rowele<<endl;
+	cout<<"the element is:";
+	cout<<b[rowele];
+	
+
+	return 0;
+}
+	
+
+
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int m,n,a[10][10],i,j,size,rowele,i1,i2,count=0,b[10];
+	cout<<"enter the dimension :";
+	cin>>m>>n;
+	cout<<"enter the elements:";
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			if(i==j||i==j-1||i==j+1)
+			cin>>a[i][j];
+			else
+			a[i][j]=0;
+			
+		}
+	}
+	cout<<"the elements are:";
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			cout<<a[i][j]<<" ";
+			
+		}cout<<endl;
+	}
+	size=3*m-2;
+	cout<<"the row major 1d array is:"<<endl;
+	for(i=0;i<m;i++)
+	
+		for(j=0;j<n;j++)
+		if(i==j||i==j-1||i==j+1)
+
+		
+	
+	
+	b[count++]=a[i][j];	
+	for(i=0;i<size;i++)
+	cout<<b[i];
+	cout<<"enter the offset:";
+	cin>>i1>>i2;
+	rowele=(2*i1+i2);
+	cout<<"the position is:"<<rowele;
+	cout<<"element is:"<<b[rowele];
+	
+	
+	
+	
+	return 0;
+}
+
+
+
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int m,n,a[10][10],i,j,size,rowele,i1,i2,count=0,b[10];
+	cout<<"enter the dimension :";
+	cin>>m>>n;
+	cout<<"enter the upper triangular elements:";
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			if(i==j||i<j)
+			cin>>a[i][j];
+			else
+			a[i][j]=0;
+			
+		}
+	}
+	cout<<"the elements are:";
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			cout<<a[i][j]<<" ";
+			
+		}cout<<endl;
+	}
+	size=(n*(n+1))/2;
+	cout<<"the row major 1d array is:"<<endl;
+	for(i=0;i<m;i++)
+	{
+	
+	
+		for(j=0;j<n;j++)
+		{
+		
+		if(i==j||i<j)
+		{
+		
+	b[count++]=a[i][j];
+}
+}
+}
+		
+	for(i=0;i<size;i++)
+	cout<<b[i];
+	cout<<"enter the offset  :";
+	cin>>i1>>i2;
+	rowele=((n*i1)+i2-(i1*(i1+1)/2));
+	cout<<"position is:"<<rowele<<endl;
+	cout<<"the element is:";
+	cout<<b[rowele];
+	
+
+	return 0;
+}
+
+
+
+
+
+#include<iostream>
+using namespace std;
+int main()
+{
+	int m,n,a[10][10],i,j,size,rowele,i1,i2,count=0,b[10];
+	cout<<"enter the dimension :";
+	cin>>m>>n;
+	cout<<"enter the lower triangular elements:";
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			if(i==j||i>j)
+			cin>>a[i][j];
+			else
+			a[i][j]=0;
+			
+		}
+	}
+	cout<<"the elements are:";
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			cout<<a[i][j]<<" ";
+			
+		}cout<<endl;
+	}
+	size=(n*(n+1))/2;
+	cout<<"the row major 1d array is:"<<endl;
+	for(i=0;i<m;i++)
+	{
+	
+	
+		for(j=0;j<n;j++)
+		{
+		
+		if(i==j||i>j)
+		{
+		
+	b[count++]=a[i][j];
+}
+}
+}
+		
+	for(i=0;i<size;i++)
+	cout<<b[i];
+	cout<<"enter the offset  :";
+	cin>>i1>>i2;
+	rowele=((i1*(i1+1)/2)+i2);
+	cout<<"position is:"<<rowele<<endl;
+	cout<<"the element is:";
+	cout<<b[rowele];
+	
+
+	return 0;
+}
