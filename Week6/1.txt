@@ -1,0 +1,81 @@
+#include<iostream>
+using namespace std;
+
+const int MAX_SIZE = 100;
+int n, arr[MAX_SIZE];
+int rear = -1;
+int front = -1;
+
+bool isFull() {
+    return rear == MAX_SIZE - 1;
+}
+
+bool isEmpty() {
+    return front == -1;
+}
+
+void enqueue(int no) {
+    if (isFull()) {
+        cout << "Queue is full \n";
+    } else {
+        if (front == -1) {
+            front = 0;
+        }
+        arr[++rear] = no;
+        cout << "Enqueue successful\n";
+    }
+}
+
+void dequeue() {
+    if (!isEmpty()) {
+        cout << "Dequeue successful. Removed element: " << arr[front] << "\n";
+        if (front == rear) {
+            front = rear = -1;
+        } else {
+            front++;
+        }
+    } else {
+        cout << "Queue is empty\n";
+    }
+}
+
+void display() {
+    if (!isEmpty()) {
+        cout << "Elements are: ";
+        for (int i = front; i <= rear; i++) {
+            cout << arr[i] << "\t";
+        }
+        cout << "\n";
+    } else {
+        cout << "Queue is empty\n";
+    }
+}
+
+int main() {
+    int choice, ele;
+    do {
+        cout << "Menu \n 1. Add element \n 2. Remove element \n 3. Display elements \n 4. Exit\n Enter your choice: ";
+        cin >> choice;
+
+        switch(choice) {
+            case 1:
+                cout << "Enter element to add: ";
+                cin >> ele;
+                enqueue(ele);
+                break;
+            case 2:
+                cout << "Dequeue in progress....";
+                dequeue();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                exit(0);
+            default:
+                cout << "Invalid option, try again..\n";
+        }
+    } while (choice != 4);
+
+    return 0;
+}

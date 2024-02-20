@@ -1,0 +1,123 @@
+#include<iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+void insertAtBeginning(struct Node*& head, int value) {
+    struct Node* newNode = new Node;
+    newNode->data = value;
+    newNode->next = head;
+    head = newNode;
+}
+
+void insertAtEnd(struct Node*& head, int value) {
+    struct Node* newNode = new Node;
+    newNode->data = value;
+    newNode->next = nullptr;
+
+    if (head == nullptr) {
+        head = newNode;
+    } else {
+        struct Node* current = head;
+        while (current->next != nullptr) {
+            current = current->next;
+        }
+        current->next = newNode;
+    }
+}
+
+void insertAtPosition(struct Node*& head, int value, int position) {
+    if (position <= 0) {
+        cout << "Invalid position. Please enter a positive position.\n";
+        return;
+    }
+
+    if (position == 1) {
+        insertAtBeginning(head, value);
+        return;
+    }
+
+    struct Node* newNode = new Node;
+    newNode->data = value;
+
+    struct Node* current = head;
+    for (int i = 1; i < position - 1 && current != nullptr; ++i) {
+        current = current->next;
+    }
+
+    if (current == nullptr) {
+        cout << "Invalid position. Position exceeds the size of the list.\n";
+        delete newNode;
+        return;
+    }
+
+    newNode->next = current->next;
+    current->next = newNode;
+}
+
+void displayList(struct Node* head) {
+    struct Node* current = head;
+    while (current != nullptr) {
+        cout << current->data << " ";
+        current = current->next;
+    }
+    cout << endl;
+}
+
+int main() {
+    struct Node* head = nullptr;
+    int choice, value, position;
+
+    do {
+        cout << "\nMenu:\n";
+        cout << "1. Insert at Beginning\n";
+        cout << "2. Insert at End\n";
+        cout << "3. Insert at Specified Position\n";
+        cout << "4. Display List\n";
+        cout << "5. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "Enter value to insert at the beginning: ";
+                cin >> value;
+                insertAtBeginning(head, value);
+                break;
+            case 2:
+                cout << "Enter value to insert at the end: ";
+                cin >> value;
+                insertAtEnd(head, value);
+                break;
+            case 3:
+                cout << "Enter value to insert: ";
+                cin >> value;
+                cout << "Enter position to insert: ";
+                cin >> position;
+                insertAtPosition(head, value, position);
+                break;
+            case 4:
+                cout << "Current List: ";
+                displayList(head);
+                break;
+            case 5:
+                cout << "Exiting program.\n";
+                break;
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 5);
+
+    // Free allocated memory before exiting
+    struct Node* current = head;
+    while (current != nullptr) {
+        struct Node* temp = current;
+        current = current->next;
+        delete temp;
+    }
+
+    return 0;
+}
