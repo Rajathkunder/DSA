@@ -1,0 +1,112 @@
+#include<iostream>
+
+using namespace std;
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+void insertSorted(Node*& head, int n) {
+    Node* newnode = new Node;
+    newnode->data = n;
+    newnode->next = nullptr;
+
+    if (head == nullptr || n < head->data) {
+        
+        newnode->next = head;
+        head = newnode;
+        cout << newnode->data << " inserted at the beginning\n";
+        return;
+    }
+
+    Node* current = head;
+    while (current->next != nullptr && current->next->data < n) {
+        current = current->next;
+    }
+
+    newnode->next = current->next;
+    current->next = newnode;
+    cout << "Data " << newnode->data << " inserted in sorted order\n";
+}
+
+void remove(Node*& head, int pos) {
+    if (head == nullptr) {
+        cout << "List is empty\n";
+        return;
+    }
+
+    if (pos == 0) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        cout << "Deleted successfully\n";
+        return;
+    }
+
+    int count = 0;
+    Node* current = head;
+    while (current != nullptr && count < pos - 1) {
+        current = current->next;
+        count++;
+    }
+
+    if (current == nullptr || current->next == nullptr) {
+        cout << "Position out of range\n";
+        return;
+    }
+
+    Node* nodeToDelete = current->next;
+    current->next = nodeToDelete->next;
+    delete nodeToDelete;
+    cout << "Deleted successfully\n";
+}
+
+void display(Node* head) {
+    Node* current = head;
+    while (current != nullptr) {
+        cout << current->data << " ";
+        current = current->next;
+    }
+    if (current == nullptr) {
+        cout << "List is empty";
+    }
+    cout << endl;
+}
+
+int main() {
+    struct Node* head = nullptr;
+    int ele;
+    int ch;
+    do {
+        cout << "----MENU-----\n";
+        cout << "1.Insert into sorted list\n2.Removing from list\n3.Display elements\n4.Exit\n";
+        cout << "Enter your choice\n";
+        cin >> ch;
+        switch (ch) {
+            case 1:
+                cout << "Inserting in sorted order...\n";
+                cout << "Enter element to insert:\n";
+                cin >> ele;
+                insertSorted(head, ele);
+                break;
+            case 2:
+                cout << "Deleting from list...\n";
+                int pos;
+                cout << "Enter position to delete\n";
+                cin >> pos;
+                remove(head, pos);
+                break;
+            case 3:
+                cout << "Displayed data is:\n";
+                display(head);
+                break;
+            case 4:
+                exit(0);
+                break;
+            default:
+                cout << "Enter valid option\n";
+        }
+    } while (ch != 4);
+    return 0;
+}
